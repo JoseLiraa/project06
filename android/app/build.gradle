@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-
+apply plugin: "com.google.gms.google-services"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 import com.android.build.OutputFile
@@ -78,6 +78,13 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
+    buildscript {
+    dependencies {
+    // ... other dependencies
+    classpath "com.google.gms:google-services:4.3.13"
+    // Add me --- /\
+    }
+}
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
@@ -258,6 +265,7 @@ android {
 }
 
 dependencies {
+    implementation platform("com.google.firebase:firebase-bom:30.3.1")
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     //noinspection GradleDynamicVersion
